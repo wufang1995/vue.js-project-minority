@@ -1,4 +1,4 @@
-# enjoy
+# minority
 
 > A Vue.js project
 
