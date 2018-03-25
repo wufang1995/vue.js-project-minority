@@ -19,7 +19,23 @@ module.exports = {
               // pathRewrite: {
               //     '^/v4/api': '/v4/api'
               //   }
-          }
+          },
+          '/api/user': {
+              target: 'http://localhost:3000',
+              host: 'localhost:3000',
+              changeOrigin:true
+              // pathRewrite: {
+              //     '^/v4/api': '/v4/api'
+              //   }
+          },
+          '/api/login': {
+              target: 'http://localhost:3000',
+              host: 'localhost:3000',
+              changeOrigin:true
+              // pathRewrite: {
+              //     '^/v4/api': '/v4/api'
+              //   }
+          },
     },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

@@ -9,10 +9,10 @@
             <span  @click="gai" >+ {{code}}</span>
             <i class="iconfont" v-if="!issShow" key="1" >&#xe60e;</i>
             <i class="iconfont" v-else="issShow" key="2">&#xe60f;</i>
-            <input type="text" v-model="ss" placeholder="手机号码" >
+            <input type="text"  placeholder="手机号码" v-model="phone">
             </div>
-              <input type="text" placeholder="昵称(2-10个字符,中英文)" >
-              <input type="text" placeholder="密码(不少于6位)">
+              <input type="text" placeholder="昵称(2-10个字符,中英文)" v-model="name">
+              <input type="text" placeholder="密码(不少于6位)" v-model="password">
               <input type="text" placeholder="再次输入密码">
               <div class="l1">
               <input type="text" placeholder="输入验证码">
@@ -29,6 +29,7 @@
 
 </template>
 <script>
+import axios from "axios";
 import tel from "./tel"
 import tanchuang from "./tanchuang"
 export default {
@@ -37,8 +38,10 @@ export default {
         return{
             issShow:false,
             code:86,
-            ss:'',
-            block:false
+            block:false,
+            phone:null,
+            name:null,
+            password:null,
         }
   },
   components:{
@@ -57,10 +60,22 @@ export default {
             this.issShow=nll;
     },
     tanchuang(){
-        var val = this.ss;
+        var val = this.phone;
         var re = /^1[3,4,5,7,8]\d{9}$/;
         if(re.test(val)){
-         this.block=false
+          this.block=false;
+          axios.post('/api/user', {
+              name:this.name,
+              phone:this.phone,
+              password:this.password
+          })
+          .then(function (res) {
+              if (res.data=='1') {
+                window.location.href="http://localhost:8080/#/login"
+              }else{
+
+              }
+          })
         }
         else{
           this.block= true

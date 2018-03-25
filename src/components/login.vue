@@ -8,9 +8,9 @@
           <div class="haha">
           <span>+ 86</span>
           <i class="iconfont">&#xe60e;</i>
-          <input  v-model="ss" type="text" placeholder="手机号">
+          <input  v-model="phone" type="text" placeholder="手机号">
           </div>
-          <input type="text" placeholder="密码">
+          <input type="text" placeholder="密码" v-model="password">
         </div>
         <div id="footer">
           <input type="checkbox"><span>记住密码</span>
@@ -27,19 +27,29 @@
 
 </template>
 <script>
+import axios from "axios";
 export default {
   name: 'login',
   data(){
       return{
-        ss:'111',
+        phone:null,
+        password:null
       }
   },
   methods:{
        hahah(){
-        var val = this.ss;
+        var val = this.phone;
         var re = /^1[3,4,5,7,8]\d{9}$/;
         if(re.test(val)){
-          console.log('dui');
+          axios.post('/api/login', {
+              phone:this.phone,
+              password:this.password
+          })
+          .then(function (res) {
+              if (res.data=='1') {
+                 window.location.href="http://localhost:8080"
+              };
+          })
         }
         else{
          console.log('hah')
