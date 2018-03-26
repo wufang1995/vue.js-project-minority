@@ -1,0 +1,59 @@
+
+问题1.计算属性不能传参
+
+计算属性不能传值，只能利用已有参数做出相应的某种变化，想使用灵活需要内部依赖的参数变化来调整；
+使用methods来做，根据传参返回不同的值。
+
+
+问题2.
+vue2.0 通过v-html指令渲染的富文本无法修改样式的解决方案
+v-html渲染的富文本，无法在样式表中修改样式；
+
+
+问题3.
+列表页点击到详情可以正常根据id切换详情内容
+列表页：click函数添加 this.$router.push({ name: 'detail', params: { id: id }});
+详情接收传递过来的id this.$route.params.id,
+
+列表页右栏做了个导航(热门文章)，点击热门文章切换详情内容
+问题是：地址栏：xx/detail/id可以正常传递，详情内容没变化
+正常hash有变化就应该更改对应的详情数据，热门文章点击，虽然hash变了，详情页面只加载了一次
+
+updated钩子里写axios  写key值 
+
+问题4.
+vue路由跳转到新页面底部而不是顶部
+router.afterEach((to, from, next) => {
+    window.scrollTo(0, 0);
+});
+
+问题5.
+vue 路由跳转后 怎样去掉指定的组件？
+<banner v-if="$route.path!=='/bangbang'"></banner>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
